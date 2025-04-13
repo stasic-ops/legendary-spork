@@ -1,0 +1,660 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    background-color: #000;
+    overflow-x: hidden;
+}
+
+.stars,
+.twinkling {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.stars {
+    background: #000 url('https://i.imgur.com/YKY28eT.png') repeat top center;
+    z-index: -2;
+}
+
+.twinkling {
+    background: transparent url('https://i.imgur.com/XYMF4ca.png') repeat top center;
+    z-index: -1;
+    animation: move-twink-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -10000px 5000px;
+    }
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 50px;
+    z-index: 1000;
+    transition: 0.5s;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00b4ff;
+    text-shadow: 0 0 10px rgba(0, 180, 255, 0.7);
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00b4ff, 0 0 40px #00b4ff;
+    }
+
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #00b4ff, 0 0 40px #00b4ff, 0 0 50px #00b4ff;
+    }
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.explore-btn {
+    background: linear-gradient(45deg, #00b4ff, #7e3ff2);
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 20px rgba(0, 180, 255, 0.5);
+}
+
+.explore-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 180, 255, 0.8);
+}
+
+.section {
+    padding: 100px 50px;
+    position: relative;
+}
+
+.section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: #00b4ff;
+    text-shadow: 0 0 10px rgba(0, 180, 255, 0.5);
+}
+
+.timeline {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #00b4ff, transparent);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    width: 45%;
+    margin-bottom: 50px;
+    position: relative;
+    padding: 20px;
+    background: rgba(0, 20, 40, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 180, 255, 0.3);
+    transition: 0.3s;
+}
+
+.timeline-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(0, 180, 255, 0.5);
+}
+
+.timeline-item:nth-child(odd) {
+    margin-left: auto;
+}
+
+.timeline-item::before {
+    content: attr(data-year);
+    position: absolute;
+    top: 20px;
+    width: 80px;
+    height: 30px;
+    background: #00b4ff;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.timeline-item:nth-child(odd)::before {
+    left: -100px;
+}
+
+.timeline-item:nth-child(even)::before {
+    right: -100px;
+}
+
+.timeline-item h3 {
+    margin-bottom: 15px;
+    color: #00b4ff;
+}
+
+.heroes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-card {
+    background: rgba(0, 20, 40, 0.7);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.3s;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 180, 255, 0.3);
+}
+
+.hero-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(0, 180, 255, 0.5);
+}
+
+.hero-img {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-card h3 {
+    padding: 15px 15px 5px;
+    color: #00b4ff;
+}
+
+.hero-card p {
+    padding: 0 15px 15px;
+    opacity: 0.8;
+}
+
+.achievements-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.achievement-item {
+    background: rgba(0, 20, 40, 0.7);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 0 20px rgba(0, 180, 255, 0.3);
+}
+
+.achievement-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(0, 180, 255, 0.5);
+}
+
+.achievement-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.achievement-item h3 {
+    color: #00b4ff;
+    margin-bottom: 15px;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 180, 255, 0.3);
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(0, 180, 255, 0.5);
+}
+
+.interactive-section {
+    padding: 100px 50px;
+}
+
+.interactive-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: #00b4ff;
+    text-shadow: 0 0 10px rgba(0, 180, 255, 0.5);
+}
+
+.launch-map {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.launch-point {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #ff3333;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+.launch-point:hover {
+    background-color: #ff6666;
+    transform: translate(-50%, -50%) scale(1.2);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+}
+
+#launch-map {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-image: url('https://klev.club/uploads/posts/2023-10/1697620476_klev-club-p-risunki-karta-rossiiskoi-federatsii-5.jpg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.map-container {
+    flex: 1;
+    min-width: 300px;
+    height: 400px;
+    background: rgba(0, 20, 40, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 180, 255, 0.3);
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Map_of_Russia_-_Subdivisions.svg/1200px-Map_of_Russia_-_Subdivisions.svg.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.launch-info {
+    flex: 1;
+    min-width: 300px;
+    padding: 30px;
+    background: rgba(0, 20, 40, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 180, 255, 0.3);
+}
+
+.cosmodromes {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.cosmodromes li {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background: rgba(0, 180, 255, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cosmodromes li:hover {
+    background: rgba(0, 180, 255, 0.4);
+}
+
+.cosmodrome-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    margin: 15px 0;
+    box-shadow: 0 0 15px rgba(0, 180, 255, 0.4);
+    transition: 0.3s;
+}
+
+.cosmodrome-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(0, 180, 255, 0.6);
+}
+
+.quiz-section {
+    padding: 100px 50px;
+}
+
+.quiz-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: #00b4ff;
+    text-shadow: 0 0 10px rgba(0, 180, 255, 0.5);
+}
+
+.quiz-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(0, 20, 40, 0.7);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 180, 255, 0.3);
+}
+
+.quiz-question {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.quiz-options {
+    margin-bottom: 20px;
+}
+
+.option {
+    padding: 15px;
+    margin-bottom: 10px;
+    background: rgba(0, 180, 255, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.option:hover {
+    background: rgba(0, 180, 255, 0.4);
+}
+
+.option.selected {
+    background: rgba(0, 180, 255, 0.6);
+}
+
+#next-btn,
+#restart-btn {
+    background: linear-gradient(45deg, #00b4ff, #7e3ff2);
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 20px rgba(0, 180, 255, 0.5);
+}
+
+#next-btn:hover,
+#restart-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 180, 255, 0.8);
+}
+
+footer {
+    background: rgba(0, 20, 40, 0.9);
+    padding: 50px 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.footer-section h3 {
+    color: #00b4ff;
+    margin-bottom: 20px;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section a:hover {
+    color: #00b4ff;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 20px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: rgba(0, 20, 40, 0.9);
+    margin: 10% auto;
+    padding: 30px;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 180, 255, 0.5);
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    color: #00b4ff;
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+    .section {
+        padding: 70px 20px;
+    }
+
+    .timeline::before {
+        left: 30px;
+    }
+
+    .timeline-item {
+        width: 90%;
+        margin-left: 50px;
+    }
+
+    .timeline-item:nth-child(odd) {
+        margin-left: 50px;
+    }
+
+    .timeline-item::before {
+        left: -50px;
+    }
+
+    .timeline-item:nth-child(even)::before {
+        left: -50px;
+        right: auto;
+    }
+
+    .nav-links {
+        display: none;
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.launch-point {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #00b4ff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 180, 255, 0.8);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 180, 255, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 180, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 180, 255, 0);
+    }
+}
+
+.option.correct {
+    background: rgba(0, 255, 0, 0.3);
+}
+
+.option.incorrect {
+    background: rgba(255, 0, 0, 0.3);
+}
